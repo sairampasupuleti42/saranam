@@ -1,0 +1,164 @@
+<app-admin-header></app-admin-header>
+<app-sidebar></app-sidebar>
+<div id="wrapper">
+    <div class="small-header">
+        <div class="hpanel">
+            <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a [routerLink]="['/']">Dashboard</a></li>
+                        <li><a [routerLink]="['/temples/']">Temples</a></li>
+                        <li class="active">
+                            <span>Add new temple </span>
+                        </li>
+                    </ol>
+                    <div class="pull-right">
+                        removeTemple
+                    </div>
+                </div>
+                <h1 class="font-light m-b-xs">
+                    Add temple
+                </h1>
+                <small></small>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" method="post" (ngSubmit)="saveTemple(templForm)" #templForm="ngForm" novalidate id="templForm">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Name of the Temple</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ngModel name="temple_name" placeholder="Temple name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Category</label>
+                            <div class="col-md-8">
+                                <select class="form-control required" ngModel name="temple_category">
+                                  <option *ngFor="let category of categories" value="{{category.category_id}}">
+                                        {{ category.category_name }}
+                                  </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Choose image</label>
+                            <div class="col-md-8">
+                                <input type="file" class="form-control " />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Deity</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control " ngModel name="temple_deity" placeholder="Temple Deity" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Elevation</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control " ngModel name="temple_elevation" placeholder="Temple Deity" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Visit Time</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control " ngModel name="temple_visit_time" placeholder="Temple Deity" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Meaning</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control ckeditor" ngModel name="temple_meaning"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Shilpa shastra</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_shilpa_shastra"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Sthala purana</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_sthala_purana"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Sevas pujas</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_sevas_pujas"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Festivals utsavs</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_festivals_utsavs"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Interesting facts</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " ngModel name="temple_interesting_facts"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Location</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_location"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Getting there</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_getting_there"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Places nearby</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control " rows="8" ngModel name="temple_places_nearby"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Contact Info</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" ngModel name="temple_contact_info"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-md-2 col-md-offset-10">
+                            <button class="btn btn-sm btn-success" [disabled]="!templForm.form.valid" type="submit"><i class="fa fa-save"></i> Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-admin-footer></app-admin-footer>
+</div>
