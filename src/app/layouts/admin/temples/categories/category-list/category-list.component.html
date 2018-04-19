@@ -35,6 +35,7 @@
                                 <tr>
                                     <th> Sr.No </th>
                                     <th> Name of the Category </th>
+                                    <th>Icon</th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -43,20 +44,20 @@
 
                                 <tr *ngFor="let category of categories; let i = index" id="Ltable">
 
-                                    <th>{{ i + 1}}</th>
-                                    <th>{{category.category_name}}</th>
-                                    <th>
+                                    <td>{{ i + 1}}</td>
+                                    <td>{{category.category_name}}</td>
+                                    <td><img onError="this.src='http://via.placeholder.com/350x150?text=Category%20icon%20here';" src="{{category.category_image}}" width="40" height="40" alt="{{category.category_name}}" /></td>
+                                    <td>
                                         <button (click)="updateStatus($event,category)" class="btn btn-xs " [class.btn-success]="(!btnStatus)" [class.btn-danger]="btnStatus">
-                                           
                                         <div *ngIf="category.is_active==='1'; then success"></div>
                                         <ng-template #success> Active </ng-template>
                                         <div *ngIf="category.is_active==='0';then danger"></div>
                                         <ng-template #danger> Inactive </ng-template>
                                         </button>
-                                        <button class="btn btn-default btn-xs" (click)="edit($event,category)" data-toggle="modal" data-target="#categoryEditModal"> <i class="fa fa-pencil"></i> Edit</button>
+                                        <button class="btn btn-default btn-xs"> <i class="fa fa-pencil"></i> Edit</button>
 
                                         <button (click)="removeCategory($event,category)" class="btn btn-danger btn-xs">  Remove</button>
-                                    </th>
+                                    </td>
 
                                 </tr>
                             </tbody>
@@ -75,13 +76,25 @@
                     <h4 class="modal-title">Add Category</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" (ngSubmit)="saveCategory(cateForm)" #cateForm="ngForm" novalidate id="cateForm">
+                    <div class="jumbotron text-center" *ngIf="submitted">
+                        <h2 classs="text-success">Category added successfully !</h2>
+                    </div>
+                    <form class="form-horizontal" (ngSubmit)="saveCategory(cateForm)" #cateForm="ngForm" novalidate id="cateForm" *ngIf="!submitted">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Category Name</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="category_name" value="{{category.category_name}}" class="form-control" ngModel placeholder="Category Name" required/>
+                                        <input type="text" required name="category_name" [(ngModel)]="category.category_name" class="form-control" placeholder="Category Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Category Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" (change)=fileUploader($event) accept="" class="form-control" required/>
+                                        <input type="hidden" name="category_image" [(ngModel)]="category.category_image" />
                                     </div>
                                 </div>
                             </div>
@@ -96,41 +109,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="refresh()" data-dismiss="modal">Close</button>
-                    <button type="submit" form="cateUpdateForm" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="categoryEditModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="color-line"></div>
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Category</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" method="post" (ngSubmit)="updateCategory(cateUpForm)" #cateForm="ngForm" novalidate id="cateUpForm">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Category Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="category_name" value="{{category.category_name}}" class="form-control" ngModel placeholder="Category Name" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div *ngIf="succMsg;then showSuccessMessage"></div>
-                    <ng-template #showSuccessMessage>
-                        <div class="alert alert-success">
-                            <p>Updated successfully !</p>
-                        </div>
-                    </ng-template>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" (click)="refresh()" data-dismiss="modal">Close</button>
-                    <button type="submit" form="cateUpForm" class="btn btn-primary">Save changes</button>
+                    <button type="submit" form="saveCategory" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

@@ -23,6 +23,7 @@ import { PanditsComponent } from './layouts/admin/pandits/pandits.component';
 import { PoojasComponent } from './layouts/admin/poojas/poojas.component';
 
 import { TempleService } from './services/temple.service';
+import { DashboardService } from './services/dashboard.service';
 import { CategoryService } from './services/category.service';
 import { TempleDetailsComponent } from './layouts/admin/temples/temple-details/temple-details.component';
 import { TempleAddComponent } from './layouts/admin/temples/temple-add/temple-add.component';
@@ -49,8 +50,6 @@ import { LogoutComponent } from './layouts/logout/logout.component';
     TempleAddComponent,
     CategoryListComponent,
     LogoutComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -61,7 +60,7 @@ import { LogoutComponent } from './layouts/logout/logout.component';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy,
-  }, TempleService, CategoryService, UserGuard],
+  }, TempleService, CategoryService, UserGuard, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

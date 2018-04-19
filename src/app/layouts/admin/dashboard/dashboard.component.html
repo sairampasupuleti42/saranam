@@ -1,6 +1,5 @@
 <app-admin-header></app-admin-header>
 <app-sidebar></app-sidebar>
-<!-- Main Wrapper -->
 <div id="wrapper">
     <div class="content">
         <div class="row">
@@ -11,13 +10,11 @@
                             <h4>Temples</h4>
                         </div>
                         <div class="stats-icon pull-right">
-                            <i class="pe-7s-monitor fa-4x"></i>
+                            <img src="/assets/icons/temple.png" alt="Temple" class="dashboard-stats-icon" />
                         </div>
                         <div class="m-t-xl">
-                            <h1 class="text-success">8</h1>
-                            <span class="font-bold no-margins">
-                        <!-- All categories -->
-                    </span>
+                            <h1 class="text-success">{{counts.temples_count}}</h1>
+                            <span class="font-bold no-margins"></span>
                             <br/>
                             <small>
                                     A temple is a structure reserved for religious or spiritual rituals and activities such as prayer and sacrifice
@@ -36,17 +33,15 @@
                             <h4>Pooja Store</h4>
                         </div>
                         <div class="stats-icon pull-right">
-                            <i class="pe-7s-monitor fa-4x"></i>
+                            <img src="../../../../assets/icons/store.png" alt="Pooja Store" class="dashboard-stats-icon" />
                         </div>
                         <div class="m-t-xl">
-                            <h1 class="text-success">860</h1>
-                            <span class="font-bold no-margins">
-                            <!-- Social users -->
-                        </span>
+                            <h1 class="text-success">{{counts.poojas_count}}</h1>
+                            <span class="font-bold no-margins"></span>
                             <br/>
                             <small>
                                     Pooja is a prayer ritual performed by Hindus of devotional worship to one or more  .....
-                                </small>
+                            </small>
                         </div>
                     </div>
                     <div class="panel-footer">
@@ -61,17 +56,15 @@
                             <h4>Pandits </h4>
                         </div>
                         <div class="stats-icon pull-right">
-                            <i class="pe-7s-monitor fa-4x"></i>
+                            <img src="../../../../assets/icons/pandit.png" alt="Pandits" class="dashboard-stats-icon" />
                         </div>
                         <div class="m-t-xl">
-                            <h1 class="text-success">150</h1>
-                            <span class="font-bold no-margins">
-                                <!-- Social users -->
-                            </span>
+                            <h1 class="text-success">{{counts.pandits_count}}</h1>
+                            <span class="font-bold no-margins"></span>
                             <br/>
                             <small>
-                                        Pooja is a prayer ritual performed by Hindus of devotional worship to one or more  .....
-                                    </small>
+                                Pooja is a prayer ritual performed by Hindus of devotional worship to one or more  .....
+                            </small>
                         </div>
                     </div>
                     <div class="panel-footer">
@@ -86,17 +79,15 @@
                             <h4> Users</h4>
                         </div>
                         <div class="stats-icon pull-right">
-                            <i class="pe-7s-monitor fa-4x"></i>
+                            <img src="../../../../assets/icons/users.png" alt="Users" class="dashboard-stats-icon" />
                         </div>
                         <div class="m-t-xl">
-                            <h1 class="text-success">1260</h1>
-                            <span class="font-bold no-margins">
-                                    <!-- Social users -->
-                                </span>
+                            <h1 class="text-success">{{counts.users_count}}</h1>
+                            <span class="font-bold no-margins"></span>
                             <br/>
                             <small>
-                                            Pooja is a prayer ritual performed by Hindus of devotional worship to one or more  .....
-                                        </small>
+                                Pooja is a prayer ritual performed by Hindus of devotional worship to one or more  .....
+                            </small>
                         </div>
                     </div>
                     <div class="panel-footer">
@@ -104,9 +95,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
     <app-admin-footer></app-admin-footer>
 </div>
