@@ -1,0 +1,67 @@
+<app-admin-header>
+</app-admin-header>
+<app-sidebar></app-sidebar>
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="small-header">
+        <div class="hpanel">
+            <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a [routerLink]="['/']">Dashboard</a></li>
+                        <li class="active">
+                            <span>Categories </span>
+                        </li>
+                    </ol>
+                    <div>
+                        <a class="btn btn-danger btn-sm" [routerLink]="['/categories']"><i class="fa fa-arrow-left"></i> Back</a>
+                    </div>
+                </div>
+                <h1 class="font-light m-b-xs">
+                    Categories
+                </h1>
+                <small></small>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="hpanel hgreen">
+                    <div class="panel-body">
+                        <div class="jumbotron text-center" *ngIf="submitted">
+                            <h2 classs="text-success">Category added successfully !</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-horizontal" (ngSubmit)="saveCategory(cateForm)" #cateForm="ngForm" novalidate id="cateForm" *ngIf="!submitted">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Category Name</label>
+                                            <div class="col-md-8">
+                                                <input type="text" required name="category_name" ngModel class="form-control" placeholder="Category Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Category Image</label>
+                                            <div class="col-md-8">
+                                                <input type="file" (change)=fileUploader($event) accept="" class="form-control" required/>
+                                                <input type="hidden" name="category_image" ngModel class="form-control" value={{category.category_image}} required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-default">Back</button>
+                        <button type="submit" form="cateForm" class="btn btn-success">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

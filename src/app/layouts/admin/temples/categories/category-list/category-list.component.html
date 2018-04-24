@@ -14,7 +14,7 @@
                         </li>
                     </ol>
                     <div>
-                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#categoryAddModal"><i class="fa fa-plus"></i> Add new Category</button>
+                        <a class="btn btn-primary btn-sm" [routerLink]="['/category/add']"><i class="fa fa-plus"></i> Add new Category</a>
                     </div>
                 </div>
                 <h1 class="font-light m-b-xs">
@@ -68,51 +68,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="color-line"></div>
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Category</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="jumbotron text-center" *ngIf="submitted">
-                        <h2 classs="text-success">Category added successfully !</h2>
-                    </div>
-                    <form class="form-horizontal" (ngSubmit)="saveCategory(cateForm)" #cateForm="ngForm" novalidate id="cateForm" *ngIf="!submitted">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Category Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" required name="category_name" [(ngModel)]="category.category_name" class="form-control" placeholder="Category Name" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Category Image</label>
-                                    <div class="col-md-8">
-                                        <input type="file" (change)=fileUploader($event) accept="" class="form-control" required/>
-                                        <input type="hidden" name="category_image" [(ngModel)]="category.category_image" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div *ngIf="succMsg;then showSuccessMessage"></div>
-                    <ng-template #showSuccessMessage>
-                        <div class="alert alert-success">
-                            <p>Saved successfully !</p>
-                        </div>
-                    </ng-template>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" (click)="refresh()" data-dismiss="modal">Close</button>
-                    <button type="submit" form="saveCategory" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <app-admin-footer></app-admin-footer>
 </div>

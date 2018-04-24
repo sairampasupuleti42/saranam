@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserGuard } from './auth/user.guard';
 import { AppComponent } from './app.component';
 
@@ -29,7 +29,8 @@ import { TempleDetailsComponent } from './layouts/admin/temples/temple-details/t
 import { TempleAddComponent } from './layouts/admin/temples/temple-add/temple-add.component';
 import { CategoryListComponent } from './layouts/admin/temples/categories/category-list/category-list.component';
 import { LogoutComponent } from './layouts/logout/logout.component';
-
+import { AddCategoryComponent } from './layouts/admin/temples/categories/add-category/add-category.component';
+import { UserService } from './services/user.service';
 
 
 
@@ -50,17 +51,19 @@ import { LogoutComponent } from './layouts/logout/logout.component';
     TempleAddComponent,
     CategoryListComponent,
     LogoutComponent,
+    AddCategoryComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy,
-  }, TempleService, CategoryService, UserGuard, DashboardService],
+  }, TempleService, CategoryService, UserGuard,UserService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

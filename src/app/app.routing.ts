@@ -8,6 +8,7 @@ import { DashboardComponent } from './layouts/admin/dashboard/dashboard.componen
 import { PanditsComponent } from './layouts/admin/pandits/pandits.component';
 import { PoojasComponent } from './layouts/admin/poojas/poojas.component';
 import { CategoryListComponent } from './layouts/admin/temples/categories/category-list/category-list.component';
+import { AddCategoryComponent } from './layouts/admin/temples/categories/add-category/add-category.component';
 
 import { TemplesComponent } from './layouts/admin/temples/temples.component';
 import { TempleDetailsComponent } from './layouts/admin/temples/temple-details/temple-details.component';
@@ -31,6 +32,10 @@ export const routes: Routes = [
   }, {
     path: 'categories',
     component: CategoryListComponent,
+    canActivate: [UserGuard]
+  }, {
+    path: 'category/add',
+    component: AddCategoryComponent,
     canActivate: [UserGuard]
   }, {
     path: 'temples',
