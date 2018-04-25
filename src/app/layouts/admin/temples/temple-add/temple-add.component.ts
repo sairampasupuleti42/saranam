@@ -56,7 +56,22 @@ export class TempleAddComponent implements OnInit {
     const binaryString = readerEvt.target.result;
     this.base64textString = btoa(binaryString);
     this.templeForm.setValue({
-      temple_image: this.base64textString
+      temple_image: this.base64textString,
+      temple_name: this.templeForm.value.temple_name,
+      temple_category: this.templeForm.value.temple_category,
+      temple_deity: this.templeForm.value.temple_deity,
+      temple_elevation: this.templeForm.value.temple_elevation,
+      temple_visit_time: this.templeForm.value.temple_visit_time,
+      temple_meaning: this.templeForm.value.temple_meaning,
+      temple_shilpa_shastra: this.templeForm.value.temple_shilpa_shastra,
+      temple_sthala_purana: this.templeForm.value.temple_sthala_purana,
+      temple_sevas_pujas: this.templeForm.value.temple_sevas_pujas,
+      temple_festivals_utsavs: this.templeForm.value.temple_festivals_utsavs,
+      temple_interesting_facts: this.templeForm.value.temple_interesting_facts,
+      temple_location: this.templeForm.value.temple_location,
+      temple_getting_there: this.templeForm.value.temple_getting_there,
+      temple_places_nearby: this.templeForm.value.temple_places_nearby,
+      temple_contact_info: this.templeForm.value.temple_contact_info,
     });
   }
 

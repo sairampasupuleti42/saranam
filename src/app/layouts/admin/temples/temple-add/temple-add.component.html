@@ -26,7 +26,7 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal" [formGroup]="templeForm" (ngSubmit)="saveTemple(templeForm)">
+                <form class="form-horizontal" [formGroup]="templeForm" (ngSubmit)="saveTemple(templeForm.value)">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-4">Name of the Temple</label>
