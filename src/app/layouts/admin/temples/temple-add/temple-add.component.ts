@@ -1,9 +1,10 @@
-import { NgModule, Component, Pipe, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { FormsModule, NgForm, ControlValueAccessor } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { TempleService } from './../../../../services/temple.service';
 declare var jquery: any;
 declare var $: any;
+
 @Component({
   selector: 'app-temple-add',
   templateUrl: './temple-add.component.html',
@@ -12,37 +13,60 @@ declare var $: any;
 export class TempleAddComponent implements OnInit {
   categories: any;
   response: any;
-  constructor(protected _dataService: TempleService, protected _location: Location) {
+  templeForm: FormGroup;
+  fileToUpload: File = null;
+  base64textString: any;
+  reader: any;
+  constructor(protected _dataService: TempleService, protected templeFB: FormBuilder, protected _location: Location) {
     this._dataService.getTempleCategories().subscribe(categories => {
       this.categories = categories.result;
     });
+    this.templeForm = templeFB.group({
+      'temple_name': [null, Validators.compose([Validators.required])],
+      'temple_category': [null, Validators.compose([Validators.required])],
+      'temple_image': [null, Validators.compose([Validators.required])],
+      'temple_deity': [null, Validators.compose([Validators.required])],
+      'temple_elevation': [null, Validators.compose([Validators.required])],
+      'temple_visit_time': [null, Validators.compose([Validators.required])],
+      'temple_meaning': [null, Validators.compose([Validators.required])],
+      'temple_shilpa_shastra': [null, Validators.compose([Validators.required])],
+      'temple_sthala_purana': [null, Validators.compose([Validators.required])],
+      'temple_sevas_pujas': [null, Validators.compose([Validators.required])],
+      'temple_festivals_utsavs': [null, Validators.compose([Validators.required])],
+      'temple_interesting_facts': [null, Validators.compose([Validators.required])],
+      'temple_location': [null, Validators.compose([Validators.required])],
+      'temple_getting_there': [null, Validators.compose([Validators.required])],
+      'temple_places_nearby': [null, Validators.compose([Validators.required])],
+      'temple_contact_info': [null, Validators.compose([Validators.required])]
+    });
   }
   ngOnInit() {
-  }
-  saveTemple(tmplForm: NgForm) {
-    const _form = tmplForm.controls;
-    const temple = {
-      'temple_name': (_form.temple_name.value !== ' ') ? _form.temple_name.value : '',
-      'temple_category': (_form.temple_category.value !== ' ') ? _form.temple_category.value : '',
-      'temple_deity': (_form.temple_deity.value !== ' ') ? _form.temple_deity.value : '',
-      'temple_location': (_form.temple_location.value !== ' ') ? _form.temple_location.value : '',
-      'temple_elevation': (_form.temple_elevation.value !== ' ') ? _form.temple_elevation.value : '',
-      'temple_meaning': (_form.temple_meaning.value !== '') ? _form.temple_meaning.value : '',
-      'temple_shilpa_shastra': (_form.temple_shilpa_shastra.value !== ' ') ? _form.temple_shilpa_shastra.value : '',
-      'temple_sthala_purana': (_form.temple_sthala_purana.value !== ' ') ? _form.temple_sthala_purana.value : '',
-      'temple_sevas_pujas': (_form.temple_sevas_pujas.value !== ' ') ? _form.temple_sevas_pujas.value : '',
-      'temple_festivals_utsavs': (_form.temple_festivals_utsavs.value !== ' ') ? _form.temple_festivals_utsavs.value : '',
-      'temple_interesting_facts': (_form.temple_interesting_facts.value !== ' ') ? _form.temple_interesting_facts.value : '',
-      'temple_getting_there': (_form.temple_getting_there.value !== ' ') ? _form.temple_getting_there.value : '',
-      'temple_places_nearby': (_form.temple_places_nearby.value !== ' ') ? _form.temple_places_nearby.value : '',
-      'temple_visit_time': (_form.temple_visit_time.value !== ' ') ? _form.temple_visit_time.value : '',
-      'temple_contact_info': (_form.temple_contact_info.value !== ' ') ? _form.temple_contact_info.value : ''
-    };
 
-     this._dataService.addTemple(temple).subscribe((res: Response) => {
-       this.response = res;
-       this._location.back();
-     });
+  }
+  fileUploader(evt) {
+    const files = evt.target.files;
+    const file = files[0];
+    if (files && file) {
+      this.reader = new FileReader();
+      this.reader.onload = this._handleReaderLoaded.bind(this);
+      this.reader.readAsBinaryString(file);
+    }
+  }
+  _handleReaderLoaded(readerEvt) {
+    const binaryString = readerEvt.target.result;
+    this.base64textString = btoa(binaryString);
+    this.templeForm.setValue({
+      temple_image: this.base64textString
+    });
+  }
+
+  saveTemple(templeData: any) {
+    console.log(templeData);
+
+    // this._dataService.addTemple(temple).subscribe((res: Response) => {
+    //   this.response = res;
+    //   this._location.back();
+    // });
   }
   goBack() {
     this._location.back();
