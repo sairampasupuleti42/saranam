@@ -76,12 +76,10 @@ export class TempleAddComponent implements OnInit {
   }
 
   saveTemple(templeData: any) {
-    console.log(templeData);
-
-    // this._dataService.addTemple(temple).subscribe((res: Response) => {
-    //   this.response = res;
-    //   this._location.back();
-    // });
+    this._dataService.addTemple(templeData).subscribe((res: Response) => {
+      this.response = res;
+      this._location.back();
+    });
   }
   goBack() {
     this._location.back();
