@@ -31,6 +31,7 @@ import { CategoryListComponent } from './layouts/admin/temples/categories/catego
 import { LogoutComponent } from './layouts/logout/logout.component';
 import { AddCategoryComponent } from './layouts/admin/temples/categories/add-category/add-category.component';
 import { UserService } from './services/user.service';
+import { EditCategoryComponent } from './layouts/admin/temples/categories/edit-category/edit-category.component';
 
 
 
@@ -52,6 +53,7 @@ import { UserService } from './services/user.service';
     CategoryListComponent,
     LogoutComponent,
     AddCategoryComponent,
+    EditCategoryComponent,
   ],
   imports: [
     BrowserModule,

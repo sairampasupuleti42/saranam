@@ -35,9 +35,9 @@ export class AddCategoryComponent {
   _handleReaderLoaded(readerEvt) {
     const binaryString = readerEvt.target.result;
     this.base64textString = btoa(binaryString);
-    this.fb.control['category_image'] = btoa(binaryString);
     this.categoryForm.setValue({
-      category_image: this.base64textString
+      category_image: this.base64textString,
+      category_name: this.categoryForm.value.category_name
     });
   }
   removeJumbo() {

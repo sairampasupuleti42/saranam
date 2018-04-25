@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <h1 class="font-light m-b-xs">
-                    Add Category
+                    Edit Category
                 </h1>
                 <small></small>
             </div>
@@ -30,12 +30,11 @@
                 <div class="hpanel hgreen">
                     <div class="panel-body">
                         <div class="jumbotron text-center" *ngIf="submitted">
-                            <h2 classs="text-success">Category added successfully !</h2>
-                            <a class="btn btn-danger " [routerLink]="['/categories']">Back</a>
-                            <button class="text-center btn btn-primary" (click)="removeJumbo()">Add More</button>
+                            <h2 classs="text-success">Category updated successfully !</h2>
+                            <a class="text-center btn btn-primary" [routerLink]="['/categories']">Goto Categories</a>
                         </div>
                         <div class="col-md-6">
-                            <form class="form-horizontal" id="categoryForm" [formGroup]="categoryForm" (ngSubmit)="saveCategory(categoryForm.value)" *ngIf="!submitted">
+                            <form class="form-horizontal" id="categoryForm" [formGroup]="categoryForm" (ngSubmit)="updateCategory(categoryForm.value)" *ngIf="!submitted">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -55,15 +54,28 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">Status</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" #t name="is_active" [formControl]="categoryForm.controls['is_active']" (change)="callType(t.value)">
+                                                    <option *ngFor="let type of types; let key = index" [value]="key" >{{type}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
+                        </div>
+                        <div class="col-md-6 " *ngIf="!submitted">
+                            <img onError="this.src='http://via.placeholder.com/350x150?text=Category%20icon%20here';" width="150" height="150" src="{{cat_img}}" alt="Category Image" />
                         </div>
                     </div>
                     <div class="panel-footer" *ngIf="!submitted">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-2">
                                 <a type="button" [routerLink]="['/categories']" class="btn btn-default">Back</a>
-                                <button type="submit" form="categoryForm" class="btn btn-success">Save changes</button>
+                                <button type="submit" form="categoryForm" class="btn btn-success">Update changes</button>
                             </div>
                         </div>
                     </div>

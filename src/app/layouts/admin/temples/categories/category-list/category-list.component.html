@@ -30,12 +30,13 @@
                 <div class="hpanel hgreen">
 
                     <div class="panel-body">
-                        <table class="table table-bordered table-striped" id="dtable" style="width:100%">
+                        <table class="table table-bordered table-striped order-column" id="dtable" style="width:100%">
                             <thead>
                                 <tr>
                                     <th> Sr.No </th>
                                     <th> Name of the Category </th>
-                                    <th>Icon</th>
+                                    <th> Icon </th>
+                                    <th> Status </th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -48,15 +49,19 @@
                                     <td>{{category.category_name}}</td>
                                     <td><img onError="this.src='http://via.placeholder.com/350x150?text=Category%20icon%20here';" src="{{category.category_image}}" width="40" height="40" alt="{{category.category_name}}" /></td>
                                     <td>
-                                        <button (click)="updateStatus($event,category)" class="btn btn-xs " [class.btn-success]="(!btnStatus)" [class.btn-danger]="btnStatus">
                                         <div *ngIf="category.is_active==='1'; then success"></div>
-                                        <ng-template #success> Active </ng-template>
+                                        <ng-template #success>
+                                            <label class="label label-success"> Active</label>
+                                        </ng-template>
                                         <div *ngIf="category.is_active==='0';then danger"></div>
-                                        <ng-template #danger> Inactive </ng-template>
-                                        </button>
-                                        <button class="btn btn-default btn-xs"> <i class="fa fa-pencil"></i> Edit</button>
+                                        <ng-template #danger>
+                                            <label class="label label-danger">Inactive</label>
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info btn-xs" (click)="editCategory($event,category)"> <i class="fa fa-pencil"></i> Edit</button>
 
-                                        <button (click)="removeCategory($event,category)" class="btn btn-danger btn-xs">  Remove</button>
+                                        <button (click)="removeCategory($event,category,i)" class="btn btn-danger btn-xs">  Remove</button>
                                     </td>
 
                                 </tr>
