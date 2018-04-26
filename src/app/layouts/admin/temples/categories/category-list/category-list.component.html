@@ -51,17 +51,17 @@
                                     <td>
                                         <div *ngIf="category.is_active==='1'; then success"></div>
                                         <ng-template #success>
-                                            <label class="label label-success"> Active</label>
+                                            <label class="btn btn-sm btn-success"> Active</label>
                                         </ng-template>
                                         <div *ngIf="category.is_active==='0';then danger"></div>
                                         <ng-template #danger>
-                                            <label class="label label-danger">Inactive</label>
+                                            <label class="btn btn-sm btn-danger">Inactive</label>
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <button class="btn btn-info btn-xs" (click)="editCategory($event,category)"> <i class="fa fa-pencil"></i> Edit</button>
+                                        <button class="btn btn-info btn-sm" (click)="editCategory($event,category)"> <i class="fa fa-pencil"></i></button>
 
-                                        <button (click)="removeCategory($event,category,i)" class="btn btn-danger btn-xs">  Remove</button>
+                                        <button (click)="removeCategory($event,category,i)" class="btn btn-danger btn-sm">  <i class="fa fa-trash"></i> </button>
                                     </td>
 
                                 </tr>

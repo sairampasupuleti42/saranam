@@ -2,7 +2,6 @@ import { Component, OnInit, Compiler, ElementRef, ViewChild } from '@angular/cor
 import { CategoryService } from './../../../../../services/category.service';
 import { CommonModule, Location, NgClass } from '@angular/common';
 import { FormsModule, NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NavigationExtras, Router } from '@angular/router';
 
 declare var $;
@@ -48,7 +47,6 @@ export class CategoryListComponent {
   }
 
   editCategory(event, category) {
-    console.log(category);
     const navigationExtras: NavigationExtras = {
       queryParams: {
         'category_id': category.category_id

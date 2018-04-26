@@ -26,6 +26,12 @@ export class LoginComponent {
       ],
       'password': [null, Validators.required]
     });
+    const token = localStorage.getItem('token');
+    if (token === '') {
+      this._router.navigate(['/login']);
+    } else {
+      this._router.navigate(['/dashboard']);
+    }
   }
   login(loginData: any) {
     this._dataService.userAuthentication(loginData).subscribe(res => {

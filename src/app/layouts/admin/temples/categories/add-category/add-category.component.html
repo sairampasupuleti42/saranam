@@ -29,8 +29,8 @@
             <div class="col-md-12">
                 <div class="hpanel hgreen">
                     <div class="panel-body">
-                        <div class="jumbotron text-center" *ngIf="submitted">
-                            <h2 classs="text-success">Category added successfully !</h2>
+                        <div class="jumbotron text-center text-success" *ngIf="submitted">
+                            <h2>Category added successfully !</h2>
                             <a class="btn btn-danger " [routerLink]="['/categories']">Back</a>
                             <button class="text-center btn btn-primary" (click)="removeJumbo()">Add More</button>
                         </div>

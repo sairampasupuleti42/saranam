@@ -38,21 +38,35 @@
                                     <th> Name of the Temple </th>
                                     <th> Category </th>
                                     <th width="150"> Deity </th>
+                                    <th>Status</th>
+                                    <th>View</th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let temple of temples ; let i = index" id="Ltable">
-                                    <th>{{ i + 1}}</th>
-                                    <th>{{temple.temple_name}}</th>
-                                    <th>{{temple.temple_category}}</th>
-                                    <th>{{temple.temple_deity}}</th>
-                                    <th>
-                                        <button (click)="updateStatus($event,temple)" class="btn btn-success btn-xs">  Active</button>
-                                        <button class="btn btn-default btn-xs"> <i class="fa fa-pencil"></i> Edit</button>
-                                        <a class="btn btn-info btn-xs" href="#/temples/view/{{temple.temple_id}}"> <span class="nav-label"><i class="fa fa-eye"></i> View </span></a>
-                                        <button (click)="removeTemple($event,temple)" class="btn btn-danger btn-xs">  Remove</button>
-                                    </th>
+                                    <td>{{ i + 1}}</td>
+                                    <td>{{temple.temple_name}}</td>
+                                    <td>{{temple.temple_category}}</td>
+                                    <td>{{temple.temple_deity}}</td>
+                                    <td>
+                                        <div *ngIf="temple.temple_isactive==='ACTIVE'; then success"></div>
+                                        <ng-template #success>
+                                            <label class="btn btn-success btn-sm"> Active</label>
+                                        </ng-template>
+                                        <div *ngIf="temple.is_active==='INACTIVE';then danger"></div>
+                                        <ng-template #danger>
+                                            <label class="btn btn-danger btn-sm">Inactive</label>
+                                        </ng-template>
+
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="#/temples/view/{{temple.temple_id}}"> <span class="nav-label"><i class="fa fa-eye"></i></span></a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" (click)="editTemple($event,temple)"> <i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-sm" (click)="removeTemple($event,temple)"> <i class="fa fa-trash"></i></button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

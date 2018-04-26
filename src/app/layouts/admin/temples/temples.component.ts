@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TempleService } from './../../../services/temple.service';
 declare var $;
 @Component({
@@ -9,7 +10,7 @@ declare var $;
 export class TemplesComponent implements OnInit {
   temples: Array<any>;
   res: any;
-  constructor(private _dataService: TempleService) {
+  constructor(private _dataService: TempleService, private router: Router) {
     this.refresh();
   }
   refreshTable(time) {
@@ -24,16 +25,14 @@ export class TemplesComponent implements OnInit {
       this.temples = temples.result;
     });
   }
-  updateStatus(event, temple) {
-    console.log('status changed !');
+  editTemple(event, temple) {
+    this.router.navigate(['/temple/edit/' + temple.temple_id]);
   }
   removeTemple(event, temple) {
-    console.log('Temple Removed !' + temple.temple_id);
-
     if (confirm('Are you sure you want to delete ?')) {
       this._dataService.removeTemple(temple.temple_id).subscribe(templeRes => {
         this.res = templeRes.result;
-         this.LoadTemples();
+        this.refresh();
         $('#dtable').each(function () {
           const dt = $(this).dataTable();
           dt.fnDraw();

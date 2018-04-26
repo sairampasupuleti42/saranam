@@ -17,6 +17,7 @@ export class TempleAddComponent implements OnInit {
   fileToUpload: File = null;
   base64textString: any;
   reader: any;
+  submitted: Boolean;
   constructor(protected _dataService: TempleService, protected templeFB: FormBuilder, protected _location: Location) {
     this._dataService.getTempleCategories().subscribe(categories => {
       this.categories = categories.result;
@@ -41,7 +42,7 @@ export class TempleAddComponent implements OnInit {
     });
   }
   ngOnInit() {
-
+    this.submitted = false;
   }
   fileUploader(evt) {
     const files = evt.target.files;
@@ -78,8 +79,12 @@ export class TempleAddComponent implements OnInit {
   saveTemple(templeData: any) {
     this._dataService.addTemple(templeData).subscribe((res: Response) => {
       this.response = res;
-      this._location.back();
+      this.submitted = true;
+      this.templeForm.reset();
     });
+  }
+  addMore() {
+    this.submitted = !this.submitted;
   }
   goBack() {
     this._location.back();
