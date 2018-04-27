@@ -37,7 +37,7 @@
                 <a [routerLink]="['/dashboard']"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
             </li>
             <li>
-                <a><span class="nav-label">Temples Info.</span><span class="fa arrow"></span> </a>
+                <a><span class="nav-label">Temples</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a routerLinkActive="active" [routerLink]="['/categories/']"> <span class="nav-label">Deity categories</span></a>
@@ -51,7 +51,7 @@
                 <a routerLinkActive="active" [routerLink]="['/pandits/']"> <span class="nav-label">Pandits</span></a>
             </li>
             <li>
-                <a><span class="nav-label">Poojas Info.</span><span class="fa arrow"></span> </a>
+                <a><span class="nav-label">Poojas</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a routerLinkActive="active" [routerLink]="['/pooja-types/']"> <span class="nav-label">Categories</span></a>
@@ -61,7 +61,9 @@
                     </li>
                 </ul>
             </li>
-
+            <li>
+                <a [routerLink]="['/users/list']"> <span class="nav-label">Users</span> </a>
+            </li>
         </ul>
     </div>
 </aside>

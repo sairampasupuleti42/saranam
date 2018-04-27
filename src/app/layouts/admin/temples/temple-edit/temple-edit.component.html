@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-12" *ngIf="submitted">
                 <div class="jumbotron text-center text-success">
-                    <h3>Saved successfully !</h3>
+                    <h3>Updated successfully !</h3>
                     <a class="btn btn-danger btn-sm " [routerLink]="['/temples']"><i class="fa fa-arrow-left"></i> Back</a>
                 </div>
             </div>
@@ -44,8 +44,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Category</label>
                             <div class="col-md-8">
-                                <select class="form-control required" #t name="temple_category" [formControl]="templeForm.controls['temple_category']" (change)="callType(t.value)">
-                                    <option *ngFor="let category of categories;let key=index" [value]="key">
+                                <select class="form-control" #t name="temple_category" [formControl]="templeForm.controls['temple_category']" (change)="callType(t.value)">
+                                    <option *ngFor="let category of categories;let key=index" [value]="index">
                                           {{ category.category_name }}
                                     </option>  
                                   </select>
@@ -77,9 +77,18 @@
                                 <input type="text" [ngClass]="'form-control'" name="temple_visit_time" [formControl]="templeForm.controls['temple_visit_time']" placeholder="Temple Deity" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Status</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="temple_isactive" [formControl]="templeForm.controls['temple_isactive']" (change)="callType(t.value)">
+                                    <option [value]="'ACTIVE'">Active</option>
+                                    <option [value]="'INACTIVE'">In active</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <img [src]=temp_img alt="Temple Image" [ngClass]="'img-responsive'" />
+                        <img [src]=temp_img alt="Temple Image" onError="this.src='http://via.placeholder.com/350x150?text=Category%20icon%20here';" [ngClass]="'img-responsive'" />
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group">

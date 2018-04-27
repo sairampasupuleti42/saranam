@@ -33,6 +33,7 @@ import { AddCategoryComponent } from './layouts/admin/temples/categories/add-cat
 import { UserService } from './services/user.service';
 import { EditCategoryComponent } from './layouts/admin/temples/categories/edit-category/edit-category.component';
 import { TempleEditComponent } from './layouts/admin/temples/temple-edit/temple-edit.component';
+import { UsersListComponent } from './layouts/users/users-list/users-list.component';
 
 
 
@@ -56,6 +57,7 @@ import { TempleEditComponent } from './layouts/admin/temples/temple-edit/temple-
     AddCategoryComponent,
     EditCategoryComponent,
     TempleEditComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,

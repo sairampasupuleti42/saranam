@@ -39,7 +39,7 @@ export class LoginComponent {
         this.loginFailed = true;
         this.ErrorMsg = ' Invalid email / password ';
       } else {
-        localStorage.setItem('token', res.result.user_id);
+        localStorage.setItem('token', JSON.stringify(res.result.token));
         this._router.navigate(['/dashboard']);
       }
     });

@@ -41,6 +41,11 @@ export class TempleService {
       .map((res: Response) => res.json())
       .catch(this._errorHandler);
   }
+  updateTemple(temple, temple_id) {
+    return this._http.put(this._url + 'put/temple/' + temple_id, temple, this.options)
+      .map(success => success.status)
+      .catch(this._errorHandler);
+  }
   removeTemple(temple_id) {
     return this._http.delete(this._url + 'delete/temple/' + temple_id).map((res: Response) => res.json());
   }

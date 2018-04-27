@@ -15,6 +15,7 @@ import { TempleDetailsComponent } from './layouts/admin/temples/temple-details/t
 import { TempleAddComponent } from './layouts/admin/temples/temple-add/temple-add.component';
 import { UserGuard } from './auth/user.guard';
 import { TempleEditComponent } from './layouts/admin/temples/temple-edit/temple-edit.component';
+import { UsersListComponent } from './layouts/users/users-list/users-list.component';
 
 
 export const routes: Routes = [
@@ -61,6 +62,11 @@ export const routes: Routes = [
     component: TempleDetailsComponent,
     canActivate: [UserGuard]
   }, {
+    path: 'users/list',
+    component: UsersListComponent,
+    canActivate: [UserGuard]
+  }
+  , {
     path: 'logout',
     component: LogoutComponent,
   }

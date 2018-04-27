@@ -14,7 +14,6 @@ export class TempleDetailsComponent implements OnInit {
     route.url.subscribe((s: UrlSegment[]) => {
       this._dataService.getTempleInfo(s[2].path).subscribe(temple => {
         this.temple = temple.result;
-        console.log(this.temple);
       });
     });
   }

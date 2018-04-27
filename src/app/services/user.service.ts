@@ -11,11 +11,13 @@ export class UserService {
   _url: any;
   headers: any;
   options: any;
-
   result: any;
   constructor(private _http: Http) {
     this._url = 'http://bloomsandme.com/saranam/api/';
-    this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+    this.headers = new Headers({ 
+	'Content-Type': 'application/x-www-form-urlencoded'
+	});
     this.options = new RequestOptions({ headers: this.headers });
   }
   userAuthentication(user) {
@@ -28,4 +30,20 @@ export class UserService {
     console.error(error);
     return Observable.throw(error || 'Error on server occured');
   }
+
+  getData(api: string) {
+    return this._http.get(api)
+      .map(result => this.result = result.json());
+  }
+  getUsers() {
+    return this.getData(this._url + 'get/users');
+  }
+
+  getUserInfo(user_id) {
+    return this.getData(this._url + 'get/users/' + user_id);
+  }
+getMLabData(){
+	 return this._http.get('http://localhost:4247/api/users')
+      .map(result => this.result = result.json());
+}
 }

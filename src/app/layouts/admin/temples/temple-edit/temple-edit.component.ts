@@ -22,13 +22,14 @@ export class TempleEditComponent implements OnInit {
   categories: any;
   temple_image: any;
   status: any;
+  result: any;
   constructor(protected router: Router, protected _location: Location,
     protected templeFB: FormBuilder, protected _dataService: TempleService) {
 
     this.templeForm = templeFB.group({
       'temple_name': [null, Validators.compose([Validators.required])],
       'temple_category': [null, Validators.compose([Validators.required])],
-      'temple_image': [null, Validators.compose([Validators.required])],
+      'temple_image': [null],
       'temple_deity': [null, Validators.compose([Validators.required])],
       'temple_elevation': [null, Validators.compose([Validators.required])],
       'temple_visit_time': [null, Validators.compose([Validators.required])],
@@ -41,7 +42,8 @@ export class TempleEditComponent implements OnInit {
       'temple_location': [null, Validators.compose([Validators.required])],
       'temple_getting_there': [null, Validators.compose([Validators.required])],
       'temple_places_nearby': [null, Validators.compose([Validators.required])],
-      'temple_contact_info': [null, Validators.compose([Validators.required])]
+      'temple_contact_info': [null, Validators.compose([Validators.required])],
+      'temple_isactive': [null, Validators.compose([Validators.required])]
     });
   }
 
@@ -53,7 +55,7 @@ export class TempleEditComponent implements OnInit {
       this.templeForm.patchValue({
         'temple_name': this.temple.temple_name,
         'temple_category': this.temple.temple_category,
-        'temple_image': '',
+        'temple_image': null,
         'temple_deity': this.temple.temple_deity,
         'temple_elevation': this.temple.temple_elevation,
         'temple_visit_time': this.temple.temple_visit_time,
@@ -66,7 +68,8 @@ export class TempleEditComponent implements OnInit {
         'temple_location': this.temple.temple_location,
         'temple_getting_there': this.temple.temple_getting_there,
         'temple_places_nearby': this.temple.temple_places_nearby,
-        'temple_contact_info': this.temple.temple_contact_info
+        'temple_contact_info': this.temple.temple_contact_info,
+        'temple_isactive': this.temple.temple_isactive
       });
     });
     this._dataService.getTempleCategories().subscribe(categories => {
@@ -88,29 +91,35 @@ export class TempleEditComponent implements OnInit {
     this.base64textString = btoa(binaryString);
     this.temple_image = this.base64textString;
     this.templeForm.patchValue({
-      'temple_name': this.temple.temple_name,
-      'temple_category': this.temple.temple_category,
+      'temple_name': this.templeForm.value.temple_name,
+      'temple_category': this.templeForm.value.temple_category,
       'temple_image': this.temple_image,
-      'temple_deity': this.temple.temple_deity,
-      'temple_elevation': this.temple.temple_elevation,
-      'temple_visit_time': this.temple.temple_visit_time,
-      'temple_meaning': this.temple.temple_meaning,
-      'temple_shilpa_shastra': this.temple.temple_shilpa_shastra,
-      'temple_sthala_purana': this.temple.temple_sthala_purana,
-      'temple_sevas_pujas': this.temple.temple_sevas_pujas,
-      'temple_festivals_utsavs': this.temple.temple_festivals_utsavs,
-      'temple_interesting_facts': this.temple.temple_interesting_facts,
-      'temple_location': this.temple.temple_location,
-      'temple_getting_there': this.temple.temple_getting_there,
-      'temple_places_nearby': this.temple.temple_places_nearby,
-      'temple_contact_info': this.temple.temple_contact_info
+      'temple_deity': this.templeForm.value.temple_deity,
+      'temple_elevation': this.templeForm.value.temple_elevation,
+      'temple_visit_time': this.templeForm.value.temple_visit_time,
+      'temple_meaning': this.templeForm.value.temple_meaning,
+      'temple_shilpa_shastra': this.templeForm.value.temple_shilpa_shastra,
+      'temple_sthala_purana': this.templeForm.value.temple_sthala_purana,
+      'temple_sevas_pujas': this.templeForm.value.temple_sevas_pujas,
+      'temple_festivals_utsavs': this.templeForm.value.temple_festivals_utsavs,
+      'temple_interesting_facts': this.templeForm.value.temple_interesting_facts,
+      'temple_location': this.templeForm.value.temple_location,
+      'temple_getting_there': this.templeForm.value.temple_getting_there,
+      'temple_places_nearby': this.templeForm.value.temple_places_nearby,
+      'temple_contact_info': this.templeForm.value.temple_contact_info,
+      'temple_isactive': this.templeForm.value.temple_isactive
     });
   }
   callType(value) {
     this.status = value;
   }
   updateTemple(templeData: any) {
-    console.log(templeData);
+    this._dataService.updateTemple(templeData, this.temple_id).subscribe(categoryRes => {
+      this.result = categoryRes;
+      if (this.result === 200) {
+        this.submitted = true;
+      }
+    });
   }
   goBack() {
     this._location.back();
